@@ -16,35 +16,51 @@ import {
 
 axios.defaults.baseURL = 'https://61ea790f7bc0550017bc676c.mockapi.io';
 
-export const fetchContacts = () => dispatch => {
+export const fetchContacts = () => async dispatch => {
   dispatch(fetchContactRequest());
-
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactSuccess(data)))
-    .catch(error => dispatch(fetchContactError(error)));
+  try {
+    const { data } = await axios.get('/contacts');
+    dispatch(fetchContactSuccess(data));
+  } catch (error) {
+    dispatch(fetchContactError(error));
+  }
+  // axios
+  //   .get('/contacts')
+  //   .then(({ data }) => dispatch(fetchContactSuccess(data)))
+  //   .catch(error => dispatch(fetchContactError(error)));
 };
 
 export const addContact =
   ({ name, number }) =>
-  dispatch => {
+  async dispatch => {
     const contact = { name, number };
-
     dispatch(addContactRequest);
 
-    axios
-      .post('/contacts', contact)
-      .then(({ data }) => dispatch(addContactSuccess(data)))
-      .catch(error => dispatch(addContactError(error)));
+    try {
+      const { data } = await axios.post('/contacts', contact);
+      dispatch(addContactSuccess(data));
+    } catch (error) {
+      dispatch(addContactError(error));
+    }
+    // axios
+    //   .post('/contacts', contact)
+    //   .then(({ data }) => dispatch(addContactSuccess(data)))
+    //   .catch(error => dispatch(addContactError(error)));
   };
 
-export const deleteContact = contactId => dispatch => {
+export const deleteContact = contactId => async dispatch => {
   dispatch(deleteContactRequest());
 
-  axios
-    .delete(`/contacts/${contactId}`)
-    .then(() => dispatch(deleteContactSuccess(contactId)))
-    .catch(error => dispatch(deleteContactError(error)));
+  try {
+    await axios.delete(`/contacts/${contactId}`);
+    dispatch(deleteContactSuccess(contactId));
+  } catch (error) {
+    dispatch(deleteContactError(error));
+  }
+  // axios
+  //   .delete(`/contacts/${contactId}`)
+  //   .then(() => dispatch(deleteContactSuccess(contactId)))
+  //   .catch(error => dispatch(deleteContactError(error)));
 };
 
 // export const changeName = contactId => dispatch => {

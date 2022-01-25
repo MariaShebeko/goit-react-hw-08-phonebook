@@ -18,6 +18,7 @@ const initialState = {
     items: [],
     filter: '',
     loading: false,
+    // error: null,
   },
 };
 
@@ -45,6 +46,8 @@ const loadingReducer = createReducer(initialState.contacts.loading, {
   [deleteContactSuccess]: () => false,
   [deleteContactError]: () => false,
 });
+
+// const errorReducer = createReducer(initialState.contacts.error,{});
 export default combineReducers({
   items: itemsReducer,
   filter: filterReducer,

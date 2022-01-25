@@ -6,7 +6,7 @@ import {
 } from '../../redux/contacts/contacts-selectors';
 import * as contactsOperations from '../../redux/contacts/contacts-operations';
 import ContactItem from './ContactItem';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader';
 import s from './ContactList.module.css';
 
 const ContactList = () => {
