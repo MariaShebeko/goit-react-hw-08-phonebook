@@ -1,5 +1,6 @@
 export const getItems = state => state.items;
 export const getFilter = state => state.filter;
+export const getLoader = state => state.loading;
 
 export const getVisibleContacts = state => {
   const { items, filter } = state;
