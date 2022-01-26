@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as contactsAPI from '../../services/contacts-api';
 import {
   fetchContactRequest,
   fetchContactSuccess,
@@ -9,9 +10,6 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
-  // changeContactRequest,
-  // changeContactSuccess,
-  // changeContactError,
 } from './contacts-actions';
 
 axios.defaults.baseURL = 'https://61ea790f7bc0550017bc676c.mockapi.io';
@@ -19,48 +17,35 @@ axios.defaults.baseURL = 'https://61ea790f7bc0550017bc676c.mockapi.io';
 export const fetchContacts = () => async dispatch => {
   dispatch(fetchContactRequest());
   try {
-    const { data } = await axios.get('/contacts');
+    const data = await contactsAPI.fetchContacts();
     dispatch(fetchContactSuccess(data));
   } catch (error) {
     dispatch(fetchContactError(error));
   }
-  // axios
-  //   .get('/contacts')
-  //   .then(({ data }) => dispatch(fetchContactSuccess(data)))
-  //   .catch(error => dispatch(fetchContactError(error)));
 };
 
 export const addContact =
   ({ name, number }) =>
   async dispatch => {
-    const contact = { name, number };
     dispatch(addContactRequest);
 
     try {
-      const { data } = await axios.post('/contacts', contact);
+      const data = await await contactsAPI.addContact({ name, number });
       dispatch(addContactSuccess(data));
     } catch (error) {
       dispatch(addContactError(error));
     }
-    // axios
-    //   .post('/contacts', contact)
-    //   .then(({ data }) => dispatch(addContactSuccess(data)))
-    //   .catch(error => dispatch(addContactError(error)));
   };
 
 export const deleteContact = contactId => async dispatch => {
   dispatch(deleteContactRequest());
 
   try {
-    await axios.delete(`/contacts/${contactId}`);
+    await contactsAPI.deleteContact(contactId);
     dispatch(deleteContactSuccess(contactId));
   } catch (error) {
     dispatch(deleteContactError(error));
   }
-  // axios
-  //   .delete(`/contacts/${contactId}`)
-  //   .then(() => dispatch(deleteContactSuccess(contactId)))
-  //   .catch(error => dispatch(deleteContactError(error)));
 };
 
 // export const changeName = contactId => dispatch => {
