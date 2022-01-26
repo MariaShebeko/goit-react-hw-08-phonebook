@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import * as contactsOperations from '../../redux/contacts/contacts-operations';
+import { contactsOperations } from 'redux/contacts';
 import Icon from '../Icon/Icon';
 import s from './ContactList.module.css';
 
