@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getItems } from '../../redux/contacts/contacts-selectors';
-import * as contactsOperations from '../../redux/contacts/contacts-operations';
-// import { nanoid } from 'nanoid';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import s from './ContactForm.module.css';
 import Icon from '../Icon/Icon';
 
 export default function ContactForm() {
-  const contacts = useSelector(getItems);
+  const contacts = useSelector(contactsSelectors.getItems);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();

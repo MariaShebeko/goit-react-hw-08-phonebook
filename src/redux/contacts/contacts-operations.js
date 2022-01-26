@@ -1,52 +1,41 @@
-import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as contactsAPI from '../../services/contacts-api';
-import {
-  fetchContactRequest,
-  fetchContactSuccess,
-  fetchContactError,
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-} from './contacts-actions';
 
-axios.defaults.baseURL = 'https://61ea790f7bc0550017bc676c.mockapi.io';
-
-export const fetchContacts = () => async dispatch => {
-  dispatch(fetchContactRequest());
-  try {
-    const data = await contactsAPI.fetchContacts();
-    dispatch(fetchContactSuccess(data));
-  } catch (error) {
-    dispatch(fetchContactError(error));
-  }
-};
-
-export const addContact =
-  ({ name, number }) =>
-  async dispatch => {
-    dispatch(addContactRequest);
-
+export const fetchContacts = createAsyncThunk(
+  'contacts/fetchContacts',
+  async (_, { rejectWithValue }) => {
     try {
-      const data = await await contactsAPI.addContact({ name, number });
-      dispatch(addContactSuccess(data));
+      const data = await contactsAPI.fetchContacts();
+      return data;
     } catch (error) {
-      dispatch(addContactError(error));
+      return rejectWithValue(error);
     }
-  };
+  },
+);
 
-export const deleteContact = contactId => async dispatch => {
-  dispatch(deleteContactRequest());
+export const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async (contact, { rejectWithValue }) => {
+    try {
+      const data = await contactsAPI.addContact(contact);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
-  try {
-    await contactsAPI.deleteContact(contactId);
-    dispatch(deleteContactSuccess(contactId));
-  } catch (error) {
-    dispatch(deleteContactError(error));
-  }
-};
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async (id, { rejectWithValue }) => {
+    try {
+      await contactsAPI.deleteContact(id);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 // export const changeName = contactId => dispatch => {
 //   dispatch(changeContactRequest());
