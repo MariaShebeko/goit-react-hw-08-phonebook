@@ -7,6 +7,7 @@ import Icon from '../Icon/Icon';
 
 export default function ContactForm() {
   const contacts = useSelector(contactsSelectors.getItems);
+  const loading = useSelector(contactsSelectors.getLoader);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
@@ -71,8 +72,8 @@ export default function ContactForm() {
           Number
         </label>
       </div>
-      <button className={s.button} type="submit">
-        Add contact
+      <button className={s.button} type="submit" disabled={loading}>
+        {loading ? 'Adding...' : 'Add contact'}
         <Icon
           iconName="iconUserPlus"
           width="18"
