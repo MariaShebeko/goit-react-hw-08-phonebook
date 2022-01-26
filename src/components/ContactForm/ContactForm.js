@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
+import { warningNotification } from 'helpers/notification';
 import s from './ContactForm.module.css';
 import Icon from '../Icon/Icon';
 
@@ -18,12 +19,14 @@ export default function ContactForm() {
   const handleSubmit = event => {
     event.preventDefault();
 
-    const similarName = contacts.find(contact => contact.name === name);
+    const similarName = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
     const similarNumber = contacts.find(contact => contact.number === number);
     if (similarName) {
-      return alert('This name is allready exist');
+      return warningNotification('This name is allready exist');
     } else if (similarNumber) {
-      return alert('This number is allready exist');
+      return warningNotification('This number is allready exist');
     }
 
     dispatch(contactsOperations.addContact({ name, number }));
