@@ -18,7 +18,7 @@ const initialState = {
     items: [],
     filter: '',
     loading: false,
-    // error: null,
+    error: null,
   },
 };
 
@@ -47,9 +47,13 @@ const loadingReducer = createReducer(initialState.contacts.loading, {
   [deleteContactError]: () => false,
 });
 
-// const errorReducer = createReducer(initialState.contacts.error,{});
+const errorReducer = createReducer(initialState.contacts.error, {
+  [fetchContactError]: (_, action) => action.payload,
+  [fetchContactRequest]: () => null,
+});
 export default combineReducers({
   items: itemsReducer,
   filter: filterReducer,
   loading: loadingReducer,
+  error: errorReducer,
 });
