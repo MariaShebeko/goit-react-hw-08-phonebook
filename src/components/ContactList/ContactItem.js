@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
+import { LoaderButtons } from 'components/Loader';
 import Icon from '../Icon/Icon';
 import s from './ContactList.module.css';
 
@@ -24,7 +25,7 @@ export default function ContactItem({ id, name, number }) {
         className={s.button}
         disabled={loading}
       >
-        {loading ? 'Deleting...' : 'Delete'}
+        {loading ? <LoaderButtons /> : 'Delete'}
         <Icon iconName="iconBin" width="18" height="18" className={s.iconBin} />
       </button>
     </li>

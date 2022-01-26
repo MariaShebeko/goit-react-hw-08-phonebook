@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import ContactItem from './ContactItem';
-import Loader from 'components/Loader';
+import { Loader } from 'components/Loader';
 import s from './ContactList.module.css';
 
 const ContactList = () => {

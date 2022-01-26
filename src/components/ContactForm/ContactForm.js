@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import { warningNotification } from 'helpers/notification';
+import { LoaderButtons } from 'components/Loader';
 import s from './ContactForm.module.css';
 import Icon from '../Icon/Icon';
 
@@ -73,7 +74,7 @@ export default function ContactForm() {
         </label>
       </div>
       <button className={s.button} type="submit" disabled={loading}>
-        {loading ? 'Adding...' : 'Add contact'}
+        {loading ? <LoaderButtons /> : 'Add contact'}
         <Icon
           iconName="iconUserPlus"
           width="18"
