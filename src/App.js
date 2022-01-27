@@ -1,24 +1,23 @@
 import React from 'react';
-import Container from './components/Container';
-import Section from './components/Section';
-import ContactForm from './components/ContactForm/ContactForm';
-import ContactList from './components/ContactList';
-import Filter from './components/Filter';
-import { Toaster } from 'react-hot-toast';
+import { Switch, Route } from 'react-router-dom';
+import Container from 'components/Container';
+import AppBar from 'components/AppBar';
+import HomeView from 'views/HomeView';
+import RegisterView from 'views/RegisterView';
+import LoginView from 'views/LoginView';
+import ContactsView from 'views/ContactsView';
 
 export default function App() {
   return (
-    <>
-      <Toaster />
-      <Container>
-        <Section title={'Phonebook'}>
-          <ContactForm />
-        </Section>
-        <Section title={'Contacts'}>
-          <Filter />
-          <ContactList />
-        </Section>
-      </Container>
-    </>
+    <Container>
+      <AppBar />
+
+      <Switch>
+        <Route exact path="/" component={HomeView} />
+        <Route path="/register" component={RegisterView} />
+        <Route path="/login" component={LoginView} />
+        <Route path="/contacts" component={ContactsView} />
+      </Switch>
+    </Container>
   );
 }
