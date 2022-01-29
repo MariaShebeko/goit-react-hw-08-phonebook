@@ -1,3 +1,7 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { authSelectors, authOperations } from 'redux/auth';
+import Icon from 'components/Icon';
+
 const styles = {
   container: {
     display: 'flex',
@@ -13,11 +17,15 @@ const styles = {
 };
 
 export default function UserMenu() {
+  const dispatch = useDispatch();
+  const name = useSelector(authSelectors.getUserName);
   return (
     <div style={styles.container}>
-      {/* <img src={avatar} alt="" width="32" style={styles.avatar} /> */}
-      <span style={styles.name}>Добро пожаловать, </span>
-      <button type="button">Выйти</button>
+      <Icon iconName="iconUserCheck" width="18" height="18" />
+      <span style={styles.name}>Добро пожаловать, {name}</span>
+      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+        Выйти
+      </button>
     </div>
   );
 }

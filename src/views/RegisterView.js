@@ -35,7 +35,7 @@ export default function RegisterView() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
-    console.log({ name, email, password });
+    // console.log({ name, email, password });
 
     setName('');
     setEmail('');

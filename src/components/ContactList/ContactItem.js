@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import { LoaderButtons } from 'components/Loader';
-import Icon from '../Icon/Icon';
+import Icon from '../Icon';
 import s from './ContactList.module.css';
 
 export default function ContactItem({ id, name, number }) {
