@@ -1,31 +1,25 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelectors, authOperations } from 'redux/auth';
-import Icon from 'components/Icon';
-
-const styles = {
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  avatar: {
-    marginRight: 4,
-  },
-  name: {
-    fontWeight: 700,
-    marginRight: 12,
-  },
-};
+import { Stack, Typography, IconButton } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import UserAvatar from './Avatar';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUserName);
+
   return (
-    <div style={styles.container}>
-      <Icon iconName="iconUserCheck" width="18" height="18" />
-      <span style={styles.name}>Добро пожаловать, {name}</span>
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
-        Выйти
-      </button>
-    </div>
+    <Stack direction="row" spacing={3} alignItems="center">
+      <UserAvatar name={name} />
+      <Typography>Welcome, {name}</Typography>
+      <IconButton
+        type="button"
+        aria-label="logout"
+        color="secondary"
+        onClick={() => dispatch(authOperations.logOut())}
+      >
+        <LogoutIcon />
+      </IconButton>
+    </Stack>
   );
 }

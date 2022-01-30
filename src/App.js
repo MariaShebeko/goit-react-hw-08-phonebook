@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch } from 'react-router-dom';
 import { authOperations, authSelectors } from 'redux/auth';
 import Container from 'components/Container';
-import AppBar from 'components/AppBar';
+import Header from 'components/AppBar';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 import HomeView from 'views/HomeView';
@@ -27,7 +27,7 @@ export default function App() {
         <h1>Show skeleton</h1>
       ) : (
         <>
-          <AppBar />
+          <Header />
 
           <Switch>
             <Suspense fallback={<h1>Downloading...</h1>}>

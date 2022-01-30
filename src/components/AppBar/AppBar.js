@@ -3,23 +3,20 @@ import { authSelectors } from 'redux/auth';
 import Navigation from 'components/Navigation';
 import UserMenu from '../UserMenu';
 import AuthNav from '../AuthNav';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 
-const styles = {
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottom: '1px solid #2A363B',
-  },
-};
-
-export default function AppBar() {
+export default function Header() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingUser);
   return (
-    <header style={styles.header}>
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </header>
+    <AppBar>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Navigation />
+        </Typography>
+
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      </Toolbar>
+    </AppBar>
   );
 }

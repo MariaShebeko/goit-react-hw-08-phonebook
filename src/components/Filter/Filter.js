@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsActions, contactsSelectors } from 'redux/contacts';
+import { Box, TextField } from '@mui/material';
+
 import s from './Filter.module.css';
 
 const Filter = () => {
@@ -9,15 +11,25 @@ const Filter = () => {
     dispatch(contactsActions.changeFilter(event.target.value));
 
   return (
-    <label>
-      Find contacts by name
-      <input
-        type="text"
-        value={value}
-        onChange={onChange}
-        className={s.input}
-      />
-    </label>
+    <>
+      <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          id="standard-search"
+          label="Find contacts by name"
+          type="search"
+          variant="standard"
+          value={value}
+          onChange={onChange}
+        />
+      </Box>
+    </>
   );
 };
 
