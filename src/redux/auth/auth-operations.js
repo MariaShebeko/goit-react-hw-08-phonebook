@@ -19,7 +19,9 @@ const register = createAsyncThunk('auth/register', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    errorNotification('Something went wrong, try to register again');
+    errorNotification(
+      'Contact with this name has already existed, try to register again',
+    );
     throw new Error(error);
   }
 });
