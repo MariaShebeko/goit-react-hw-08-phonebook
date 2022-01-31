@@ -8,9 +8,14 @@ export default function PrivateRoute({
   ...routeProps
 }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const tokenExist = useSelector(authSelectors.getToken);
   return (
     <Route {...routeProps}>
-      {isLoggedIn ? children : <Redirect to={redirectTo} />}
+      {tokenExist ? (
+        isLoggedIn && tokenExist && children
+      ) : (
+        <Redirect to={redirectTo} />
+      )}
     </Route>
   );
 }

@@ -2,8 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { contactsActions, contactsSelectors } from 'redux/contacts';
 import { Box, TextField } from '@mui/material';
 
-import s from './Filter.module.css';
-
 const Filter = () => {
   const value = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();

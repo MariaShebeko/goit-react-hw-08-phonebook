@@ -15,7 +15,6 @@ import ContactsView from 'views/ContactsView';
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingUser);
-  // console.log('isFetchingCurrentUser', isFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -23,12 +22,11 @@ export default function App() {
 
   return (
     <Container>
+      <Header />
       {isFetchingCurrentUser ? (
         <h1>Show skeleton</h1>
       ) : (
         <>
-          <Header />
-
           <Switch>
             <Suspense fallback={<h1>Downloading...</h1>}>
               <PublicRoute exact path="/">

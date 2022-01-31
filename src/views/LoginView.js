@@ -2,16 +2,10 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import { Typography, TextField, FormControl, Button } from '@mui/material';
+
+// const GOOGLE_CLIENT_ID =
+//   '938317961173-3kctvbgebkvgtc48bfibsmsooqpasfo3.apps.googleusercontent.com';
 
 export default function LoginView() {
   const dispatch = useDispatch();
@@ -37,32 +31,47 @@ export default function LoginView() {
   };
 
   return (
-    <div>
-      <h1>Страница логина</h1>
+    <>
+      <FormControl
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          marginTop: 20,
+        }}
+        autoComplete="off"
+        variant="outlined"
+        margin="normal"
+      >
+        <Typography variant="h2" component="h2">
+          Log In
+        </Typography>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+        <TextField
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          id="outlined-email"
+          label="Email"
+          variant="outlined"
+          margin="normal"
+        />
 
-        <label style={styles.label}>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
+        <TextField
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          id="outlined-password-input"
+          label="Password"
+          autoComplete="current-password"
+          margin="normal"
+        />
 
-        <button type="submit">Войти</button>
-      </form>
-    </div>
+        <Button type="submit" variant="contained">
+          Sign In
+        </Button>
+      </FormControl>
+    </>
   );
 }
