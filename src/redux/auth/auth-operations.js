@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { errorNotification } from 'helpers/notification';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -17,7 +18,10 @@ const register = createAsyncThunk('auth/register', async credentials => {
     const { data } = await axios.post('/users/signup', credentials);
     token.set(data.token);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    errorNotification('Something went wrong, try to register again');
+    throw new Error(error);
+  }
 });
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
@@ -25,14 +29,20 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     const { data } = await axios.post('/users/login', credentials);
     token.set(data.token);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    errorNotification('Something went wrong, try to log in again');
+    throw new Error(error);
+  }
 });
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/users/logout');
     token.unset();
-  } catch (error) {}
+  } catch (error) {
+    errorNotification('Something went wrong');
+    throw new Error(error);
+  }
 });
 
 const fetchCurrentUser = createAsyncThunk(
@@ -40,7 +50,6 @@ const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log('persistedToken', persistedToken);
 
     if (persistedToken === null) {
       console.log('there is no token');
@@ -51,7 +60,10 @@ const fetchCurrentUser = createAsyncThunk(
     try {
       const { data } = await axios.get('/users/current');
       return data;
-    } catch (error) {}
+    } catch (error) {
+      errorNotification('Something went wrong');
+      throw new Error(error);
+    }
   },
 );
 

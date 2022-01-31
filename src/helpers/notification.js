@@ -27,3 +27,7 @@ export const successNotification = text => {
     },
   });
 };
+
+export const errorNotification = text => {
+  toast.error(text);
+};
