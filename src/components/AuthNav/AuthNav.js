@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-// import { Typography } from '@mui/material'
 import s from './AuthNav.module.css';
 
 export default function AuthNav() {

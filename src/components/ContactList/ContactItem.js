@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import { LoaderButtons } from 'components/Loader';
 import Icon from '../Icon';
+import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 
 export default function ContactItem({ id, name, number }) {
@@ -31,3 +32,9 @@ export default function ContactItem({ id, name, number }) {
     </li>
   );
 }
+
+ContactItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+};
