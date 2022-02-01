@@ -17,13 +17,17 @@ const ContactList = () => {
   return (
     <>
       {loader && <Loader />}
-      {contacts.length > 0 && (
+      {contacts.length > 0 ? (
         <ul className={s.list}>
           <p className={s.total}>Total amount of contacts: {contacts.length}</p>
           {contacts.map(contact => (
             <ContactItem key={contact.id} {...contact} />
           ))}
         </ul>
+      ) : (
+        <p className={s.total} style={{ fontWeight: 'bold' }}>
+          Add your first contact
+        </p>
       )}
     </>
   );

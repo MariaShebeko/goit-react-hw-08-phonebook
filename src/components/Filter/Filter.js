@@ -13,6 +13,8 @@ const Filter = () => {
       <Box
         component="form"
         sx={{
+          display: 'flex',
+          justifyContent: 'center',
           '& .MuiTextField-root': { m: 1, width: '25ch' },
         }}
         noValidate
