@@ -63,8 +63,8 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      errorNotification('Something went wrong');
-      throw new Error(error);
+      // errorNotification('Something went wrong');
+      // throw new Error(error);
     }
   },
 );
