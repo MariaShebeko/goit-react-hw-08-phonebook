@@ -39,14 +39,18 @@ export const deleteContact = createAsyncThunk(
   },
 );
 
-// export const changeName = contactId => dispatch => {
-//   dispatch(changeContactRequest());
-//   const update = {};
-//   axios.patch(`/contacts/${contactId}`, update).then(({ data }) => data);
-// };
+export const changeContactName = createAsyncThunk(
+  'contacts/changeContactName',
+  async ({ id, name }) => {
+    const { data } = await contactsAPI.updateContactName(id, name);
+    return data;
+  },
+);
 
-// export const changeNumber = contactId => dispatch => {
-//   dispatch(changeContactRequest());
-//    const update = {};
-//    axios.patch(`/contacts/${contactId}`, update).then(({ data }) => data);
-// };
+export const changeContactNumber = createAsyncThunk(
+  'contacts/changeContactNumber',
+  async ({ id, number }) => {
+    const { data } = await contactsAPI.updateContactName(id, number);
+    return data;
+  },
+);
