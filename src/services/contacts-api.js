@@ -16,10 +16,13 @@ export async function deleteContact(id) {
   axios.delete(`/contacts/${id}`);
 }
 
-export async function updateContactName(id, data) {
-  axios.patch(`/contacts/${id}`, { name: data });
-}
+// export async function updateContactName(id, data) {
+//   console.log('id', id);
+//   console.log('data', data);
 
-export async function updateContactNumber(id, data) {
-  axios.patch(`/contacts/${id}`, { number: data });
-}
+//   axios.patch(`/contacts/${id}`, data);
+// }
+
+// export async function updateContactNumber(id, data) {
+//   axios.patch(`/contacts/${id}`, data);
+// }

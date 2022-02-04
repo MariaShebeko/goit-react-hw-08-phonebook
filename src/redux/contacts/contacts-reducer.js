@@ -25,22 +25,14 @@ const itemsReducer = createReducer(initialState.contacts.items, {
   },
   [deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
-  [changeContactName.fulfilled]: (state, { payload }) => {
-    console.log('payload', payload);
-    return (state = state.map(
-      contact =>
-        (contact.id = payload.id
-          ? { ...contact, name: payload.name }
-          : contact),
-    ));
-  },
+  [changeContactName.fulfilled]: (state, { payload }) =>
+    state.map(contact => (contact.id === payload.id ? payload : contact)),
 
   [changeContactNumber.fulfilled]: (state, { payload }) =>
-    (state = state.map(
-      contact =>
-        (contact.id = payload.id
-          ? { ...contact, number: payload.number }
-          : contact),
+    (state = state.map(contact =>
+      contact.id === payload.id
+        ? { ...contact, number: payload.number }
+        : contact,
     )),
 });
 

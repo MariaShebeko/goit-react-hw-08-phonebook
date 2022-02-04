@@ -14,14 +14,14 @@ export default function ContactItem({ id, name, number }) {
   const dispatch = useDispatch();
   const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
-  const handleSaveName = id => val => {
-    setNameEdit(val);
-    dispatch(contactsOperations.changeContactName({ id, val }));
+  const handleSaveName = value => {
+    setNameEdit(value);
+    dispatch(contactsOperations.changeContactName({ id, value }));
   };
 
-  const handleSaveNumber = id => val => {
-    setNumberEdit(val);
-    dispatch(contactsOperations.changeContactNumber({ id, val }));
+  const handleSaveNumber = value => {
+    setNumberEdit(value);
+    dispatch(contactsOperations.changeContactNumber({ id, value }));
   };
 
   return (
@@ -33,8 +33,25 @@ export default function ContactItem({ id, name, number }) {
           height="18"
           className={s.iconAddressBook}
         />
-        {<EdiText type="text" value={nameEdit} onSave={handleSaveName} />} :{' '}
-        {<EdiText type="text" value={numberEdit} onSave={handleSaveNumber} />}
+        {
+          <EdiText
+            id={id}
+            type="text"
+            name="name"
+            value={nameEdit}
+            onSave={handleSaveName}
+          />
+        }{' '}
+        :{' '}
+        {
+          <EdiText
+            id={id}
+            name="number"
+            type="number"
+            value={numberEdit}
+            onSave={handleSaveNumber}
+          />
+        }
       </div>
       <button
         onClick={() => onDeleteContact(id)}
