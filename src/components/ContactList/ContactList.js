@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { contactsOperations, contactsSelectors } from 'redux/contacts';
+import {
+  contactsOperations,
+  contactsSelectors,
+  contactsActions,
+} from 'redux/contacts';
 import ContactItem from './ContactItem';
 import { Loader } from 'components/Loader';
 import s from './ContactList.module.css';
@@ -13,6 +17,10 @@ const ContactList = () => {
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (contacts.length === 0) dispatch(contactsActions.changeFilter(''));
+  }, [contacts.length, dispatch]);
 
   return (
     <>
