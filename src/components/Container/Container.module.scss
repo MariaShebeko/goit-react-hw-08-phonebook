@@ -1,0 +1,19 @@
+.Container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and(min-width: 768px) {
+    flex-wrap: nowrap;
+    width: 767px;
+  }
+
+  @media screen and(min-width: 1200px) {
+    flex-wrap: nowrap;
+    width: 1200px;
+  }
+}

@@ -40,48 +40,50 @@ export default function ContactForm() {
     setNumber('');
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={s.inputWrapper}>
-        <input
-          type="text"
-          id="nameInputId"
-          className={s.input}
-          value={name}
-          onChange={handleChange}
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-        <label className={s.label} htmlFor="nameInputId">
-          Name
-        </label>
-      </div>
-      <div className={s.inputWrapper}>
-        <input
-          type="tel"
-          id="numberInputId"
-          className={s.input}
-          value={number}
-          onChange={handleChange}
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-        <label className={s.label} htmlFor="numberInputId">
-          Number
-        </label>
-      </div>
-      <button className={s.button} type="submit" disabled={loading}>
-        {loading ? <LoaderButtons /> : 'Add contact'}
-        <Icon
-          iconName="iconUserPlus"
-          width="18"
-          height="18"
-          className={s.iconUserPlus}
-        />
-      </button>
-    </form>
+    <div className={s.formWrapper}>
+      <form onSubmit={handleSubmit}>
+        <div className={s.inputWrapper}>
+          <input
+            type="text"
+            id="nameInputId"
+            className={s.input}
+            value={name}
+            onChange={handleChange}
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+          <label className={s.label} htmlFor="nameInputId">
+            Name
+          </label>
+        </div>
+        <div className={s.inputWrapper}>
+          <input
+            type="tel"
+            id="numberInputId"
+            className={s.input}
+            value={number}
+            onChange={handleChange}
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+          <label className={s.label} htmlFor="numberInputId">
+            Number
+          </label>
+        </div>
+        <button className={s.button} type="submit" disabled={loading}>
+          {loading ? <LoaderButtons /> : 'Add contact'}
+          <Icon
+            iconName="iconUserPlus"
+            width="18"
+            height="18"
+            className={s.iconUserPlus}
+          />
+        </button>
+      </form>
+    </div>
   );
 }

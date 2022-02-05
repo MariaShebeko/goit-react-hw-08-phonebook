@@ -27,7 +27,7 @@ const ContactList = () => {
       {loader && <Loader />}
       {contacts.length > 0 ? (
         <ul className={s.list}>
-          <p className={s.total}>Total amount of contacts: {contacts.length}</p>
+          <p>Total amount of contacts: {contacts.length}</p>
           {contacts.map(contact => (
             <ContactItem key={contact.id} {...contact} />
           ))}
